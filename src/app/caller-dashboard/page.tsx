@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import axios from "axios";
 
-const getList = async () => {
+const getRecords = async () => {
   try {
     const response = await axios.get("http://localhost:4000/records");
     return response.data;
@@ -13,7 +13,7 @@ const getList = async () => {
 };
 
 const Page = async () => {
-  const records = await getList();
+  const records = await getRecords();
 
   return (
     <>
