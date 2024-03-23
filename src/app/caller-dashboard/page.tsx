@@ -5,7 +5,9 @@ import axios from "axios";
 
 const getRecords = async () => {
   try {
-    const response = await axios.get("http://localhost:4000/records");
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_BASEURL}/records`
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -18,7 +20,7 @@ const Page = async () => {
   return (
     <>
       <Header theme="dark" hideActionButton={true} isUserLogged={true} />
-      <CallerDashboard records={records}/>
+      <CallerDashboard records={records} />
       <Footer />
     </>
   );

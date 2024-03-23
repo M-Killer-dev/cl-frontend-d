@@ -4,39 +4,29 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const LoginForm = () => {
+const CreateAccountForm = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handler = async (event: React.FormEvent) => {
     try {
       event.preventDefault();
+      if (confirmPassword !== password) {
+        alert("password is not matched");
+        return;
+      }
       const payload = { email, password };
-      const endpoint = `${process.env.NEXT_PUBLIC_API_BASEURL}/login`;
+      const endpoint = `${process.env.NEXT_PUBLIC_API_BASEURL}/create-account`;
       const response = await axios.post(endpoint, payload);
       if (response.status === 200) {
-        await createSession(response.data);
-        router.push("/caller-dashboard");
+        router.push("/login");
       }
     } catch (error) {
       console.log(error);
-      alert("Invalid Login");
+      alert("Please check the console log.");
     }
-  };
-
-  const createSession = async (accessToken: any) => {
-    try {
-      await axios
-        .post("/api/login", null, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        .then(() => {
-          localStorage.setItem("accessToken", accessToken);
-        });
-    } catch (error) {}
   };
 
   return (
@@ -56,18 +46,22 @@ const LoginForm = () => {
         placeholder="Enter Your Password"
         onChange={(e) => setPassword(e.target.value)}
       />
+
+      <input
+        type="password"
+        className="w-full p-4 border border-slate-400 rounded-lg"
+        placeholder="Confirm Your Password"
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+
       <button
         type="submit"
         className="bg-[#5236FF] py-4 px-20 rounded-full text-white w-fit"
       >
-        Login
-      </button>
-
-      <button className="border border-gray-300 py-4 px-20 rounded-full text-[#5236FF] w-fit">
-        Reset Password
+        Create Account
       </button>
     </form>
   );
 };
 
-export default LoginForm;
+export default CreateAccountForm;
