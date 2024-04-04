@@ -5,10 +5,12 @@ import axios from "axios";
 
 const getRecords = async () => {
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_BASEURL}/records`
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASEURL}/records`,
+      { cache: "no-store" }
     );
-    return response.data;
+    let result = await response.json();
+    return result;
   } catch (error) {
     console.log(error);
   }
