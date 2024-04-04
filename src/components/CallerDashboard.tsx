@@ -119,7 +119,7 @@ const CallerDashboard = ({ records }: Props) => {
       title: "Our USP",
       body: records[currentIndex]?.call_script?.ss_a4,
     },
-  ]
+  ];
 
   return (
     <>
@@ -230,7 +230,9 @@ const CallerDashboard = ({ records }: Props) => {
           <br />
 
           {call_script.map((item) => (
-            <Accordion title={item.title} body={item.body} uuid={item.uuid} />
+            <div key={item.uuid}>
+              <Accordion title={item.title} body={item.body} uuid={item.uuid} />
+            </div>
           ))}
         </div>
       </div>
