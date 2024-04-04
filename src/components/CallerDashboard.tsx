@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import axios from "axios";
+import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
+import FeedbackBox from "./FeedbackBox";
+import AiChat from "./AiChat";
+import Accordion from "./Accordion";
 
 type Props = {
   records: any[];
@@ -69,92 +73,142 @@ const CallerDashboard = ({ records }: Props) => {
     setNote("");
   };
 
+  const call_script = [
+    {
+      uuid: "intro",
+      title: "Greetings",
+      body: records[currentIndex]?.call_script?.intro,
+    },
+    {
+      uuid: "ss_a1",
+      title: "Company Introduction",
+      body: records[currentIndex]?.call_script?.ss_a1,
+    },
+    {
+      uuid: "bs_a1",
+      title: "Customer Background",
+      body: records[currentIndex]?.call_script?.bs_a1,
+    },
+    {
+      uuid: "bs_a4",
+      title: "Customer Insights",
+      body: records[currentIndex]?.call_script?.bs_a4,
+    },
+    {
+      uuid: "bs_a2",
+      title: "Customer Priorities",
+      body: records[currentIndex]?.call_script?.bs_a2,
+    },
+    {
+      uuid: "bs_a3",
+      title: "Customer Challenges",
+      body: records[currentIndex]?.call_script?.bs_a3,
+    },
+    {
+      uuid: "ss_a3",
+      title: "Our Services",
+      body: records[currentIndex]?.call_script?.ss_a3,
+    },
+    {
+      uuid: "bs_a5",
+      title: "Customer Investments ",
+      body: records[currentIndex]?.call_script?.bs_a5,
+    },
+    {
+      uuid: "ss_a4",
+      title: "Our USP",
+      body: records[currentIndex]?.call_script?.ss_a4,
+    },
+  ]
+
   return (
     <>
       <div className="max-w-screen-xl mx-auto px-20">
-        <div className="flex flex-col items-center">
-          <h1 className="text-4xl mb-2 font-semibold">Caller Dashboard</h1>
+        <div className="flex flex-col items-center py-20">
+          <h1 className="text-5xl mb-2 font-semibold">Caller Dashboard</h1>
           <p>All you need to create call magic</p>
         </div>
 
-        <div className="flex flex-wrap justify-center lg:justify-between py-20 gap-20">
-          <div className="w-full space-y-10">
-            <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
-              <p>First Name: {records[currentIndex].f_name}</p>
-              <p>Last Name: {records[currentIndex].l_name}</p>
-            </div>
-
-            <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
-              <p>Company: {records[currentIndex].company}</p>
-              <p>Title: {records[currentIndex].title}</p>
-            </div>
-
-            <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
-              <p>Phone: {records[currentIndex].phone}</p>
-              <p>Email: {records[currentIndex].email}</p>
-            </div>
-
-            <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
-              <p>Location: {records[currentIndex].location}</p>
-              <p>Campaign S. No. {records[currentIndex].s_no}</p>
-            </div>
-          </div>
-
+        <div className="flex flex-wrap justify-center lg:justify-between py-10 gap-20">
           <div className="flex flex-wrap gap-10 justify-center lg:justify-between items-center w-full">
-            <div className="flex items-center gap-10">
-              <div className="flex items-center gap-2">
-                <button
-                  className="bg-[#9B65FE] p-2 rounded-full flex items-center justify-center"
-                  onClick={handlePrev}
-                  disabled={currentIndex === 0}
-                >
-                  <svg
-                    width="19"
-                    height="24"
-                    viewBox="0 0 19 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.730324 5.18003L4.37257 0.861542C4.83919 0.308548 5.46783 -9.91821e-05 6.12672 -9.91821e-05L15.7227 -9.91821e-05C17.0945 -9.91821e-05 18.207 1.32451 18.207 2.95777L18.207 20.1134C18.207 21.7467 17.0945 23.0713 15.7227 23.0713L2.48448 23.0713C1.1127 23.0713 0.000148773 21.7467 0.000148773 20.1134V7.27626C-0.00201225 6.48921 0.261541 5.7356 0.730324 5.18003Z"
-                      fill="#5236FF"
-                    />
-                    <path
-                      d="M1.79289 11.2924C1.40237 11.6829 1.40237 12.3161 1.79289 12.7066L8.15685 19.0706C8.54738 19.4611 9.18054 19.4611 9.57107 19.0706C9.96159 18.6801 9.96159 18.0469 9.57107 17.6564L3.91421 11.9995L9.57107 6.34266C9.96159 5.95213 9.96159 5.31897 9.57107 4.92844C9.18054 4.53792 8.54738 4.53792 8.15685 4.92844L1.79289 11.2924ZM16.5 10.9995L2.5 10.9995V12.9995L16.5 12.9995V10.9995Z"
-                      fill="white"
-                    />
-                  </svg>
-                </button>
-                <p className="text-[12px]">Previous</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  className="bg-[#9B65FE] p-2 rounded-full flex items-center justify-center"
-                  onClick={handleNext}
-                  disabled={currentIndex === records.length - 1}
-                >
-                  <svg
-                    width="19"
-                    height="24"
-                    viewBox="0 0 19 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M17.4767 17.8913L13.8345 22.2097C13.3678 22.7627 12.7392 23.0714 12.0803 23.0714H2.48433C1.11255 23.0714 0 21.7468 0 20.1135V2.95787C0 1.32461 1.11255 0 2.48433 0H15.7226C17.0943 0 18.2069 1.32461 18.2069 2.95787V15.795C18.209 16.5821 17.9455 17.3357 17.4767 17.8913Z"
-                      fill="#5236FF"
-                    />
-                    <path
-                      d="M15.2071 12.7071C15.5976 12.3166 15.5976 11.6834 15.2071 11.2929L8.84315 4.92893C8.45262 4.53841 7.81946 4.53841 7.42893 4.92893C7.03841 5.31946 7.03841 5.95262 7.42893 6.34315L13.0858 12L7.42893 17.6569C7.03841 18.0474 7.03841 18.6805 7.42893 19.0711C7.81946 19.4616 8.45262 19.4616 8.84315 19.0711L15.2071 12.7071ZM0.5 13L14.5 13V11L0.5 11L0.5 13Z"
-                      fill="white"
-                    />
-                  </svg>
-                </button>
-                <p className="text-[12px]">Next</p>
+            <div>
+              <div className="w-full space-y-10">
+                <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
+                  <p>First Name: {records[currentIndex]?.f_name}</p>
+                  <p>Last Name: {records[currentIndex]?.l_name}</p>
+                </div>
+
+                <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
+                  <p>Company: {records[currentIndex]?.company}</p>
+                  <p>Title: {records[currentIndex]?.title}</p>
+                </div>
+
+                <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
+                  <p>Phone: {records[currentIndex]?.phone}</p>
+                  <p>Email: {records[currentIndex]?.email}</p>
+                </div>
+
+                <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
+                  <p>Location: {records[currentIndex]?.location}</p>
+                  <p>Campaign S. No. {records[currentIndex]?.s_no}</p>
+                </div>
               </div>
             </div>
 
             <div>
+              <div className="flex justify-between mb-5">
+                <div className="flex items-center gap-2">
+                  <button
+                    className="bg-[#9B65FE] p-2 rounded-full flex items-center justify-center"
+                    onClick={handlePrev}
+                    disabled={currentIndex === 0}
+                  >
+                    <svg
+                      width="19"
+                      height="24"
+                      viewBox="0 0 19 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.730324 5.18003L4.37257 0.861542C4.83919 0.308548 5.46783 -9.91821e-05 6.12672 -9.91821e-05L15.7227 -9.91821e-05C17.0945 -9.91821e-05 18.207 1.32451 18.207 2.95777L18.207 20.1134C18.207 21.7467 17.0945 23.0713 15.7227 23.0713L2.48448 23.0713C1.1127 23.0713 0.000148773 21.7467 0.000148773 20.1134V7.27626C-0.00201225 6.48921 0.261541 5.7356 0.730324 5.18003Z"
+                        fill="#5236FF"
+                      />
+                      <path
+                        d="M1.79289 11.2924C1.40237 11.6829 1.40237 12.3161 1.79289 12.7066L8.15685 19.0706C8.54738 19.4611 9.18054 19.4611 9.57107 19.0706C9.96159 18.6801 9.96159 18.0469 9.57107 17.6564L3.91421 11.9995L9.57107 6.34266C9.96159 5.95213 9.96159 5.31897 9.57107 4.92844C9.18054 4.53792 8.54738 4.53792 8.15685 4.92844L1.79289 11.2924ZM16.5 10.9995L2.5 10.9995V12.9995L16.5 12.9995V10.9995Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                  <p className="text-[12px]">Previous</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    className="bg-[#9B65FE] p-2 rounded-full flex items-center justify-center"
+                    onClick={handleNext}
+                    disabled={currentIndex === records.length - 1}
+                  >
+                    <svg
+                      width="19"
+                      height="24"
+                      viewBox="0 0 19 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.4767 17.8913L13.8345 22.2097C13.3678 22.7627 12.7392 23.0714 12.0803 23.0714H2.48433C1.11255 23.0714 0 21.7468 0 20.1135V2.95787C0 1.32461 1.11255 0 2.48433 0H15.7226C17.0943 0 18.2069 1.32461 18.2069 2.95787V15.795C18.209 16.5821 17.9455 17.3357 17.4767 17.8913Z"
+                        fill="#5236FF"
+                      />
+                      <path
+                        d="M15.2071 12.7071C15.5976 12.3166 15.5976 11.6834 15.2071 11.2929L8.84315 4.92893C8.45262 4.53841 7.81946 4.53841 7.42893 4.92893C7.03841 5.31946 7.03841 5.95262 7.42893 6.34315L13.0858 12L7.42893 17.6569C7.03841 18.0474 7.03841 18.6805 7.42893 19.0711C7.81946 19.4616 8.45262 19.4616 8.84315 19.0711L15.2071 12.7071ZM0.5 13L14.5 13V11L0.5 11L0.5 13Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                  <p className="text-[12px]">Next</p>
+                </div>
+              </div>
+
               <select
                 onChange={(e) => setCurrentIndex(parseInt(e.target.value))}
                 className="border border-black p-2 rounded-full"
@@ -170,17 +224,20 @@ const CallerDashboard = ({ records }: Props) => {
           </div>
         </div>
 
-        <div className="bg-[#F9F9F9] p-20">
+        <div className="bg-[#F9F9F9] mt-20">
           <p className="text-4xl">Call Script</p>
-          <p className="text-[#797979] mt-5">
-            {records[currentIndex].call_script}
-          </p>
+          <hr />
+          <br />
+
+          {call_script.map((item) => (
+            <Accordion title={item.title} body={item.body} uuid={item.uuid} />
+          ))}
         </div>
       </div>
 
-      <div className=" p-20">
+      <div className="p-10">
         <div className="max-w-screen-lg mx-auto">
-          <p className="text-4xl text-center mb-20">
+          <p className="text-4xl text-center mb-5">
             Frequently Asked Questions
           </p>
           <div className="flex bg-[#F9F9F9] gap-5 flex-wrap p-10 justify-normal  lg:justify-center">
@@ -189,12 +246,12 @@ const CallerDashboard = ({ records }: Props) => {
                 className="w-full py-10  bg-slate-300 rounded-lg px-4"
                 onClick={() =>
                   viewHandler({
-                    a: records[currentIndex].a1,
-                    q: records[currentIndex].q1,
+                    a: records[currentIndex]?.a1,
+                    q: records[currentIndex]?.q1,
                   })
                 }
               >
-                {records[currentIndex].q1}
+                {records[currentIndex]?.q1}
               </button>
             </div>
 
@@ -203,12 +260,12 @@ const CallerDashboard = ({ records }: Props) => {
                 className="w-full py-10  bg-slate-300 rounded-lg px-4"
                 onClick={() =>
                   viewHandler({
-                    a: records[currentIndex].a2,
-                    q: records[currentIndex].q2,
+                    a: records[currentIndex]?.a2,
+                    q: records[currentIndex]?.q2,
                   })
                 }
               >
-                {records[currentIndex].q2}
+                {records[currentIndex]?.q2}
               </button>
             </div>
 
@@ -217,12 +274,12 @@ const CallerDashboard = ({ records }: Props) => {
                 className="w-full py-10  bg-slate-300 rounded-lg px-4"
                 onClick={() =>
                   viewHandler({
-                    a: records[currentIndex].a3,
-                    q: records[currentIndex].q3,
+                    a: records[currentIndex]?.a3,
+                    q: records[currentIndex]?.q3,
                   })
                 }
               >
-                {records[currentIndex].q3}
+                {records[currentIndex]?.q3}
               </button>
             </div>
 
@@ -231,12 +288,12 @@ const CallerDashboard = ({ records }: Props) => {
                 className="w-full py-10  bg-slate-300 rounded-lg px-4"
                 onClick={() =>
                   viewHandler({
-                    a: records[currentIndex].a4,
-                    q: records[currentIndex].q4,
+                    a: records[currentIndex]?.a4,
+                    q: records[currentIndex]?.q4,
                   })
                 }
               >
-                {records[currentIndex].q4}
+                {records[currentIndex]?.q4}
               </button>
             </div>
 
@@ -245,12 +302,12 @@ const CallerDashboard = ({ records }: Props) => {
                 className="w-full py-10  bg-slate-300 rounded-lg px-4"
                 onClick={() =>
                   viewHandler({
-                    a: records[currentIndex].a5,
-                    q: records[currentIndex].q5,
+                    a: records[currentIndex]?.a5,
+                    q: records[currentIndex]?.q5,
                   })
                 }
               >
-                {records[currentIndex].q5}
+                {records[currentIndex]?.q5}
               </button>
             </div>
 
@@ -259,12 +316,12 @@ const CallerDashboard = ({ records }: Props) => {
                 className="w-full py-10  bg-slate-300 rounded-lg px-4"
                 onClick={() =>
                   viewHandler({
-                    a: records[currentIndex].a6,
-                    q: records[currentIndex].q6,
+                    a: records[currentIndex]?.a6,
+                    q: records[currentIndex]?.q6,
                   })
                 }
               >
-                {records[currentIndex].q6}
+                {records[currentIndex]?.q6}
               </button>
             </div>
           </div>
@@ -366,16 +423,7 @@ const CallerDashboard = ({ records }: Props) => {
           </p>
           <div className="bg-[#5236FF] p-4 rounded-lg mt-5">
             <p className="text-3xl text-white">Ask Sell-side Queries</p>
-            <div className="bg-white px-5 py-10 mt-5 rounded-sm">
-              <textarea
-                className="w-full p-5 mb-5 border border-gray-800"
-                placeholder="Type free form query here"
-                rows={10}
-              ></textarea>
-              <button className="py-5 px-10 bg-[#5236FF] hover:bg-[#422ae0] text-white text-xl rounded-full">
-                Get Answer
-              </button>
-            </div>
+            <AiChat />
           </div>
         </div>
       </section>
@@ -391,16 +439,7 @@ const CallerDashboard = ({ records }: Props) => {
           </p>
           <div className="bg-[#5236FF] p-4 rounded-lg mt-5">
             <p className="text-3xl text-white">AI Co-pilot</p>
-            <div className="bg-white px-5 py-10 mt-5 rounded-sm">
-              <textarea
-                className="w-full p-5 mb-5 border border-gray-800"
-                placeholder="Type free form query here"
-                rows={10}
-              ></textarea>
-              <button className="py-5 px-10 bg-[#5236FF] hover:bg-[#422ae0] text-white text-xl rounded-full">
-                Get Answer
-              </button>
-            </div>
+            <AiChat />
           </div>
         </div>
       </section>
