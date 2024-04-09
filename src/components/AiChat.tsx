@@ -14,27 +14,12 @@ const AiChat = () => {
   const handleSendMessage = async () => {
     // Make a request to the ChatGPT API with the user input
     const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        messages: [
-          { role: "system", content: "You are a helpful assistant." },
-          { role: "user", content: input },
-        ],
-        model: "gpt-4",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer OPENAI_API_KEY`,
-        },
-      }
+      `${process.env.NEXT_PUBLIC_API_BASEURL}/chatbot`,
+      { input: input }
     );
 
     // Update the conversation history with the response from ChatGPT
-    setMessages([
-      ...messages,
-      { role: "assistant", content: response.data.choices[0].message.content },
-    ]);
+    setMessages([...messages, { role: "assistant", content: response.data }]);
 
     // Clear the input field
     setInput("");
