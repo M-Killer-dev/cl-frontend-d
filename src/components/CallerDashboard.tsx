@@ -130,8 +130,8 @@ const CallerDashboard = ({ records }: Props) => {
         </div>
 
         <div className="flex flex-wrap justify-center lg:justify-between py-10 gap-20">
-          <div className="flex flex-wrap gap-10 justify-center lg:justify-between items-center w-full">
-            <div>
+          <div className="flex flex-wrap gap-10 justify-center lg:justify-between items-end w-full">
+            <div className="xl:w-7/12">
               <div className="w-full space-y-10">
                 <div className="flex flex-col gap-10 lg:flex-row lg:gap-40 justify-between items-center">
                   <p>First Name: {records[currentIndex]?.f_name}</p>
@@ -155,7 +155,7 @@ const CallerDashboard = ({ records }: Props) => {
               </div>
             </div>
 
-            <div>
+            <div className="xl:w-2/12">
               <div className="flex justify-between mb-5">
                 <div className="flex items-center gap-2">
                   <button
