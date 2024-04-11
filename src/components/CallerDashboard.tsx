@@ -101,7 +101,7 @@ const CallerDashboard = ({ records }: Props) => {
     },
     {
       uuid: "ss_a3",
-      title: "Buyer Company Awards",
+      title: "Buyer Company Investments ",
       body: records[currentIndex]?.call_script?.ss_a3,
     },
     {
@@ -111,7 +111,7 @@ const CallerDashboard = ({ records }: Props) => {
     },
     {
       uuid: "bs_a3",
-      title: "Buyer Company Investments",
+      title: "Buyer Company Awards",
       body: records[currentIndex]?.call_script?.bs_a3,
     },
     {
