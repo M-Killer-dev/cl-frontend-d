@@ -116,12 +116,12 @@ const CallerDashboard = ({ records }: Props) => {
     },
     {
       uuid: "bs_a1",
-      title: "Buyer Value Proposition",
+      title: "Value Proposition",
       body: records[currentIndex]?.call_script?.bs_a1,
     },
     {
       uuid: "bs_a4",
-      title: "Buyer Case Study",
+      title: "Case Study",
       body: records[currentIndex]?.call_script?.bs_a4,
     },
   ];
