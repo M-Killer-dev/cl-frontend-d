@@ -75,44 +75,34 @@ const CallerDashboard = ({ records }: Props) => {
 
   const call_script = [
     {
-      uuid: "ss_a2",
-      title: "Buyer News",
-      body: records[currentIndex]?.call_script?.ss_a2,
+      uuid: "ss_a4",
+      title: "Intro: Linkedin Post",
+      body: records[currentIndex]?.call_script?.ss_a4,
     },
     {
       uuid: "bs_a5",
-      title: "Buyer LinkedIn Events",
+      title: "Intro: LinkedIn Events",
       body: records[currentIndex]?.call_script?.bs_a5,
     },
     {
-      uuid: "ss_a4",
-      title: "Buyer Linkedin Post",
-      body: records[currentIndex]?.call_script?.ss_a4,
+      uuid: "ss_a2",
+      title: "Intro: News",
+      body: records[currentIndex]?.call_script?.ss_a2,
+    },
+    {
+      uuid: "ss_a3",
+      title: "Intro: Investments ",
+      body: records[currentIndex]?.call_script?.ss_a3,
+    },
+    {
+      uuid: "bs_a3",
+      title: "Intro: Company Awards",
+      body: records[currentIndex]?.call_script?.bs_a3,
     },
     {
       uuid: "intro",
       title: "Buyer Job Challenges ",
       body: records[currentIndex]?.call_script?.intro,
-    },
-    {
-      uuid: "ss_a1",
-      title: "Buyer Industry Challenges",
-      body: records[currentIndex]?.call_script?.ss_a1,
-    },
-    {
-      uuid: "ss_a3",
-      title: "Buyer Company Investments ",
-      body: records[currentIndex]?.call_script?.ss_a3,
-    },
-    {
-      uuid: "bs_a2",
-      title: "Buyer Values",
-      body: records[currentIndex]?.call_script?.bs_a2,
-    },
-    {
-      uuid: "bs_a3",
-      title: "Buyer Company Awards",
-      body: records[currentIndex]?.call_script?.bs_a3,
     },
     {
       uuid: "bs_a1",
@@ -124,6 +114,16 @@ const CallerDashboard = ({ records }: Props) => {
       title: "Case Study",
       body: records[currentIndex]?.call_script?.bs_a4,
     },
+    {
+      uuid: "ss_a1",
+      title: "Buyer Industry Challenges",
+      body: records[currentIndex]?.call_script?.ss_a1,
+    },
+    {
+      uuid: "bs_a2",
+      title: "Buyer Values",
+      body: records[currentIndex]?.call_script?.bs_a2,
+    }
   ];
 
   return (
