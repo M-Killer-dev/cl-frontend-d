@@ -162,8 +162,8 @@ const CallerDashboard = ({ records }: Props) => {
             </div>
 
             <div className="xl:w-2/12">
+              <ConnectCCP />
               <div className="flex justify-between mb-5">
-                <ConnectCCP />
                 <div className="flex items-center gap-2">
                   <button
                     className="bg-[#9B65FE] p-2 rounded-full flex items-center justify-center"

@@ -3,9 +3,19 @@
 
 import "amazon-connect-streams";
 import React, { memo, useRef, useEffect } from "react";
+import CallButton from "./phone/CallButton";
+import HangUpButton from "./phone/HandUpButton";
 
 const ConnectCCP = () => {
   const ref = useRef();
+
+  const acceptHandler = async () => {
+
+  }
+
+  const disconnectHandler = () => {
+
+  }
 
   useEffect(() => {
     try {
@@ -56,6 +66,10 @@ const ConnectCCP = () => {
         ref={ref}
         style={{ display: "none" }}
       >
+      </div>
+      <div className="flex justify-between mb-5">
+        <CallButton acceptHandler={acceptHandler} />
+        <HangUpButton disconnectHandler={disconnectHandler} />
       </div>
     </>
   );
