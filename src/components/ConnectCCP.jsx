@@ -14,10 +14,14 @@ const ConnectCCP = ({ phoneNum }) => {
   const acceptHandler = () => {
     let filterdNum = phoneNum.replace(/\D/g, '');
     console.log("phone number : ", filterdNum);
-    const attributes = window.contact.getAttributes();
-    let callerID = attributes.CallerID;
-    if (callerID)
+    let callerID = ""
+    if (window.contact) {
+      const attributes = window.contact.getAttributes();
+      callerID = attributes.CallerID;
+    } else {
       callerID = "695227e1-08a7-41ff-b42e-1fd6f882ea55";
+    }
+
     console.log(callerID);
     axios.post(
       `https://bx9wl6a2jj.execute-api.us-east-1.amazonaws.com/test/ConnectManager?destPhone=%2B${filterdNum}&queueARN=${callerID}`, {});
