@@ -1,22 +1,38 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
-
 import "amazon-connect-streams";
 import React, { memo, useRef, useEffect } from "react";
-import CallButton from "./phone/CallButton";
-import HangUpButton from "./phone/HandUpButton";
+import CallButton from "./phone/CallButton.tsx";
+import HangUpButton from "./phone/HandUpButton.tsx";
 import subscribeToContactEvents from './phone/contactEvents.js';
 import subscribeToAgentEvents from './phone/agentEvents.js';
 
-const ConnectCCP = () => {
+const ConnectCCP = ({ phoneNum }) => {
   const ref = useRef();
 
   const acceptHandler = async () => {
-
+    let filterdNum = phoneNum.replace(/\D/g, '');
+    console.log("phone number : ", filterdNum);
+    const attributes = window.contact.getAttributes();
+    let callerID = attributes.CallerID;
+    if (callerID)
+      callerID = "695227e1-08a7-41ff-b42e-1fd6f882ea55";
+    console.log(callerID);
+    await axios.post(
+      `https://bx9wl6a2jj.execute-api.us-east-1.amazonaws.com/test/ConnectManager?destPhone=%2B${filterdNum}&queueARN=${callerID}`);
   }
 
   const disconnectHandler = () => {
-
+    if (window.contact) {
+      window.contact.getAgentConnection().destroy({
+        success: function () {
+          console.log("Disconnected contact via Streams");
+        },
+        failure: function () {
+          console.log("Failed to disconnect contact via Streams");
+        }
+      });
+    }
   }
 
   useEffect(() => {

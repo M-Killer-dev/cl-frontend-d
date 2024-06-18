@@ -8,7 +8,7 @@ import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import FeedbackBox from "./FeedbackBox";
 import AiChat from "./AiChat";
 import Accordion from "./Accordion";
-import ConnectCCP from "./ConnectCCP";
+import ConnectCCP from "./ConnectCCP.jsx";
 
 type Props = {
   records: any[];
@@ -162,7 +162,7 @@ const CallerDashboard = ({ records }: Props) => {
             </div>
 
             <div className="xl:w-2/12">
-              <ConnectCCP />
+              <ConnectCCP phoneNum={records[currentIndex]?.phone} />
               <div className="flex justify-between mb-5">
                 <div className="flex items-center gap-2">
                   <button
