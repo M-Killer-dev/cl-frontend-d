@@ -2,7 +2,6 @@ interface ChildProps  {
   acceptHandler: () => void;
 }
 
-
 const CallButton: React.FC<ChildProps> = ({ acceptHandler}) => {
 
   return (
