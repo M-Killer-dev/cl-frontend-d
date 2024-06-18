@@ -8,6 +8,7 @@ import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import FeedbackBox from "./FeedbackBox";
 import AiChat from "./AiChat";
 import Accordion from "./Accordion";
+import ConnectCCP from "./ConnectCCP";
 
 type Props = {
   records: any[];
@@ -162,6 +163,7 @@ const CallerDashboard = ({ records }: Props) => {
 
             <div className="xl:w-2/12">
               <div className="flex justify-between mb-5">
+                <ConnectCCP />
                 <div className="flex items-center gap-2">
                   <button
                     className="bg-[#9B65FE] p-2 rounded-full flex items-center justify-center"
