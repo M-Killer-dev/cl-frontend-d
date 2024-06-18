@@ -6,6 +6,7 @@ import React, { memo, useRef, useEffect } from "react";
 import CallButton from "./phone/CallButton";
 import HangUpButton from "./phone/HandUpButton";
 import subscribeToContactEvents from './phone/contactEvents.js';
+import subscribeToAgentEvents from './phone/agentEvents.js';
 
 const ConnectCCP = () => {
   const ref = useRef();
@@ -65,6 +66,11 @@ const ConnectCCP = () => {
 
       // Subscribe to Contact events
       window.connect.contact(subscribeToContactEvents);
+      // Subscribe to Agent events
+      window.connect.agent(subscribeToAgentEvents);
+
+      // Send information to the Connect Logger
+      window.connect.getLog().info("CDEBUG >> CCP initialized and subscribed to events");
     } catch (e) {
       console.log("error", e);
     }
