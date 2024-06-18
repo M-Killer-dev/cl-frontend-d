@@ -5,6 +5,7 @@ import "amazon-connect-streams";
 import React, { memo, useRef, useEffect } from "react";
 import CallButton from "./phone/CallButton";
 import HangUpButton from "./phone/HandUpButton";
+import subscribeToContactEvents from './phone/contactEvents.js';
 
 const ConnectCCP = () => {
   const ref = useRef();
@@ -55,6 +56,15 @@ const ConnectCCP = () => {
           ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
         });
       console.log("init end");
+
+      window.connect.core.onViewContact(
+        function (event) {
+          console.log("Now Vieving contact ID: '" + event.contactId + "'");
+        }
+      );
+
+      // Subscribe to Contact events
+      window.connect.contact(subscribeToContactEvents);
     } catch (e) {
       console.log("error", e);
     }
