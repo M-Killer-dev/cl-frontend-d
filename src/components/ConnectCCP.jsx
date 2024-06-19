@@ -23,8 +23,9 @@ const ConnectCCP = ({ phoneNum }) => {
     }
 
     console.log(callerID);
-    axios.post(
-      `https://bx9wl6a2jj.execute-api.us-east-1.amazonaws.com/test/ConnectManager?destPhone=%2B${filterdNum}&queueARN=${callerID}`, {});
+    axios.post(`https://bx9wl6a2jj.execute-api.us-east-1.amazonaws.com/test/ConnectManager?destPhone=%2B9253329769&queueARN=2d6a6d0f-1f15-4c47-bad3-922b278c9b64`, {});
+    // axios.post(
+    //   `https://bx9wl6a2jj.execute-api.us-east-1.amazonaws.com/test/ConnectManager?destPhone=%2B${filterdNum}&queueARN=${callerID}`, {});
   }
 
   const disconnectHandler = () => {
